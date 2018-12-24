@@ -2,11 +2,20 @@
 
 Ansible remote machine host, default expose 22 port.
 
-### Container
+## Container
+
+Criar o container pela imagem, executar no host
 
 ```shell
-# ip route show
+$ docker run -it --name remote-[number] nogsantos/ansible-remote-machine /bin/bash
 ```
+
+#### Iniciar open ssh em background
+
+```shell
+# /usr/sbin/sshd -D &
+```
+
 
 ##### Footer notes
 

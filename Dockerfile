@@ -1,4 +1,4 @@
-FROM ubuntu:trusty-20161214
+FROM ubuntu:trusty-20181115
 
 RUN echo 'APT::Install-Recommends 0;' >> /etc/apt/apt.conf.d/01norecommends \
  && echo 'APT::Install-Suggests 0;' >> /etc/apt/apt.conf.d/01norecommends \
@@ -13,6 +13,7 @@ RUN mkdir /var/run/sshd
 RUN echo 'root:root' |chpasswd
 
 RUN sed -ri 's/^#?PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config
+
 RUN sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
 
 RUN mkdir /root/.ssh
@@ -20,5 +21,3 @@ RUN mkdir /root/.ssh
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 EXPOSE 22
-
-CMD /usr/sbin/sshd -D && /etc/init.d/ssh start
